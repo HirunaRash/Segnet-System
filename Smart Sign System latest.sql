@@ -1,6 +1,17 @@
 CREATE DATABASE smart_sign_system;
 USE smart_sign_system;
 
+-- Company table
+CREATE TABLE Company (
+    CompanyId      INT AUTO_INCREMENT PRIMARY KEY,
+    CompanyName         VARCHAR(150) NOT NULL,
+    
+    CreatedAt       DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CreatedBy       INT,
+	UpdateAt        DATETIME NULL,
+    UpdateBy        INT NULL
+);
+
 -- Departments table
 CREATE TABLE Departments (
     DepartmentId    INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,16 +45,7 @@ CREATE TABLE Employees (
 	FOREIGN KEY (CompanyId)    REFERENCES Company(CompanyId)
 );
 
--- Company table
-CREATE TABLE Company (
-    CompanyId      INT AUTO_INCREMENT PRIMARY KEY,
-    CompanyName         VARCHAR(150) NOT NULL,
-    
-    CreatedAt       DATETIME DEFAULT CURRENT_TIMESTAMP,
-    CreatedBy       INT,
-	UpdateAt        DATETIME NULL,
-    UpdateBy        INT NULL
-);
+
 
 -- Cheques table
 CREATE TABLE Cheques (
