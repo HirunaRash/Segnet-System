@@ -1,10 +1,14 @@
 export interface Company {
-  companyId: number;
-  companyCode: string;
-  companyName: string;
-  contactPerson: string | null;
-  email: string | null;
-  address: string | null;
-  phone: string | null;
-  isActive: boolean;
+  CompanyId: number;
+  CompanyName: string;
+  CompanyCode: string;
+  IsActive: boolean | null;
+  ContactPerson: string | null;
+  CompanyEmail: string | null;
+  CompanyPhone: string | null;
+  CompanyAddress: string | null;
+  CreatedAt: Date | null;
+  CreatedBy: number | null;
+  UpdateAt: Date | null;
+  UpdateBy: number | null;
 }

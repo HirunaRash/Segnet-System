@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,36 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model company {
+  CompanyId      Int           @id @default(autoincrement())
+  CompanyName    String        @db.VarChar(150)
+  CompanyCode    String        @unique(map: "CompanyCode") @db.VarChar(50)
+  IsActive       Boolean?      @default(true)
+  ContactPerson  String?       @db.VarChar(150)
+  CompanyEmail   String?       @unique(map: "CompanyEmail") @db.VarChar(150)
+  CompanyPhone   String?       @db.VarChar(20)
+  CompanyAddress String?       @db.VarChar(255)
+  CreatedAt      DateTime?     @default(now()) @db.DateTime(0)
+  CreatedBy      Int?
+  UpdateAt       DateTime?     @db.DateTime(0)
+  UpdateBy       Int?
+  departments    departments[]
+}
+
+model departments {
+  DepartmentId   Int       @id @default(autoincrement())
+  DepartmentName String    @unique(map: "DepartmentName") @db.VarChar(100)
+  DepartmentCode String    @db.VarChar(50)
+  IsActive       Boolean?  @default(true)
+  CompanyId      Int?
+  CreatedAt      DateTime? @default(now()) @db.DateTime(0)
+  CreatedBy      Int?
+  UpdateAt       DateTime? @db.DateTime(0)
+  UpdateBy       Int?
+  company        company?  @relation(fields: [CompanyId], references: [CompanyId], onDelete: NoAction, onUpdate: NoAction, map: "departments_ibfk_1")
+
+  @@index([CompanyId], map: "CompanyId")
 }

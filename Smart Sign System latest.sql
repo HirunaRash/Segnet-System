@@ -5,6 +5,12 @@ USE smart_sign_system;
 CREATE TABLE Company (
     CompanyId      INT AUTO_INCREMENT PRIMARY KEY,
     CompanyName         VARCHAR(150) NOT NULL,
+    CompanyCode         VARCHAR(50) NOT NULL UNIQUE,
+    IsActive        BOOLEAN DEFAULT TRUE,
+    ContactPerson   VARCHAR(150),
+    CompanyEmail     VARCHAR(150) UNIQUE,
+    CompanyPhone     VARCHAR(20),
+    CompanyAddress   VARCHAR(255),
     
     CreatedAt       DATETIME DEFAULT CURRENT_TIMESTAMP,
     CreatedBy       INT,

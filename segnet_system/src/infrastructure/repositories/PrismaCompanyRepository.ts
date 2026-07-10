@@ -6,6 +6,6 @@ export const PrismaCompanyRepository: ICompanyRepository = {
     return prisma.company.create({ data });
   },
   async findByCode(companyCode) {
-    return prisma.company.findFirst({ where: { companyCode } });
+    return prisma.company.findFirst({ where: { CompanyCode: companyCode } });
   },
 };
