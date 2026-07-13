@@ -8,4 +8,10 @@ export const PrismaCompanyRepository: ICompanyRepository = {
   async findByCode(companyCode) {
     return prisma.company.findFirst({ where: { CompanyCode: companyCode } });
   },
+  async findById(id) {
+    return prisma.company.findUnique({ where: { CompanyId: id } });
+  },
+  async update(id, data) {
+    return prisma.company.update({ where: { CompanyId: id }, data });
+  },
 };
